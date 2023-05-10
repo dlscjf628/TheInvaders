@@ -50,6 +50,10 @@ public class PoisonAttack : MonoBehaviour
                 target.OnDamage(damage, 1);
             }
         }
+        else if (collision.tag == "Wall")
+        {
+            speed = 0f;
+        }
     }
 
     void Des()

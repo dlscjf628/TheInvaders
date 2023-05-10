@@ -9,6 +9,7 @@ public class FlyBossMove : MonoBehaviour
     [SerializeField] private FlyBossState flyState;
     [SerializeField] private FlyBossAttack flyAttack;
 
+    public float rushSpeed = 15f;
 
     float t;
     // Start is called before the first frame update
@@ -45,7 +46,7 @@ public class FlyBossMove : MonoBehaviour
                 flyAttack.rushTime = true;
                 flyAttack.rushPosition = (player.transform.position - transform.position).normalized;
             }
-            transform.Translate(flyAttack.rushPosition * 15f * Time.deltaTime);
+            transform.Translate(flyAttack.rushPosition * rushSpeed * Time.deltaTime);
         }
     }
 

@@ -3,33 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FlyBossState : MonoBehaviour
+public class EvilGodState : MonoBehaviour
 {
-    [SerializeField] private FlyBossAttack flyBossAttack;
-    [SerializeField] private Image hpBar;
+    [SerializeField] private EvilGodAttack evilgodAttack;
 
     public float hpMax = 10f;
-    public float hp = 1f;
+    public float hp = 10f;
     public float speed = 5f;
     public float damage = 2f;
-    public float attackTime = 5f;
+    public float attackTime = 3f;
 
-    GameObject[] flyBossBody = new GameObject[4];
+    public bool berserker;
 
-    bool berserker;
-    
-    private void Start()
+    public Image hpBar;
+
+    GameObject[] EvilBossBody = new GameObject[4];
+    public GameObject wood1, wood2;
+
+    void Start()
     {
-        for(int i=0; i<4; i++)
+        for (int i = 0; i < 4; i++)
         {
-            flyBossBody[i] = transform.GetChild(i).gameObject;
+            EvilBossBody[i] = transform.GetChild(i).gameObject;
         }
+        
     }
 
     private void Update()
     {
-        if (hp < hpMax / 3 && !flyBossAttack.attackTrue && !berserker)
+        if (hp < hpMax * 0.3f && !berserker && !evilgodAttack.attackTrue)
             Berserker();
+        if(hp < hpMax * 0.6f)
+        {
+            Wood();
+        }
         HpVar();
     }
 
@@ -38,20 +45,26 @@ public class FlyBossState : MonoBehaviour
         hpBar.fillAmount = hp / hpMax;
     }
 
+    void Wood()
+    {
+        wood1.SetActive(true);
+        wood2.SetActive(true);
+    }
+
     void Berserker()
     {
         berserker = true;
-        flyBossAttack.attackTrue = true;
-        attackTime = 3f;
-        StartCoroutine(ShakeBerserk());
+        evilgodAttack.attackTrue = true;
+        attackTime = 2f;
+        StartCoroutine(ShakePoison());
     }
 
-    IEnumerator ShakeBerserk()
+    IEnumerator ShakePoison()
     {
         // 진동할 시간 설정
         float shakeTime = 1.0f;
         // 진동의 강도 설정
-        float shakeIntensity = 0.09f;
+        float shakeIntensity = 1.0f;
 
         // 진동 시간 동안 진폭을 랜덤으로 변화시키며 진동
         Vector3 originalPosition = transform.position;
@@ -65,11 +78,11 @@ public class FlyBossState : MonoBehaviour
         // 진동이 끝난 후 오브젝트 위치를 원래 위치로 되돌림
         transform.position = originalPosition;
         Color newColor = new Color32(180, 43, 43, 255); // 180 43 43
-        for(int i=0; i<4; i++)
+        for (int i = 0; i < 4; i++)
         {
-            flyBossBody[i].GetComponent<Renderer>().material.color = newColor;
+            EvilBossBody[i].GetComponent<Renderer>().material.color = newColor;
         }
-        flyBossAttack.attackTrue = false;
+        evilgodAttack.attackTrue = false;
     }
 
 }
