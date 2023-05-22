@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisonState : MonoBehaviour
+public class ViperState : MonoBehaviour
 {
     public float hp;  //몬스터 체력
     public float maxHp;
@@ -15,7 +15,7 @@ public class PoisonState : MonoBehaviour
         hp = maxHp;
     }
 
-    public void Init(SpawnDataPoison data)
+    public void Init(SpawnDataViper data)
     {
         //ani.runtimeAnimatorController =  animCon[data.spriteType];
         speed = data.speed;

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PoisonMonster : MonoBehaviour
 {
-    [SerializeField] private PoisonState poisonState;
+    [SerializeField] PoisonState mState;
 
     GameObject player;
 
-    float t1;
+    float t1 = 1f;
 
     void Start()
     {
@@ -19,7 +19,14 @@ public class PoisonMonster : MonoBehaviour
     void Update()
     {
         Vector2 direction = (player.transform.position - transform.position).normalized;
-        transform.Translate(direction * poisonState.speed * Time.deltaTime);
+        transform.Translate(direction * mState.speed * Time.deltaTime);
+    }
+
+    public virtual void OnDamage(float damgage, int mode)
+    {
+        mState.hp -= damgage;
+        if (mState.hp <= 0)
+            gameObject.SetActive(false);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -31,8 +38,16 @@ public class PoisonMonster : MonoBehaviour
             {
                 t1 = 0;
                 Damage target = collision.GetComponent<Damage>();
-                target.OnDamage(poisonState.damage, 3);
+                target.OnDamage(mState.damage, 3);
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            t1 = 1.0f;
         }
     }
 

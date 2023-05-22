@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WizardAttack : MonoBehaviour
+public class WizardAttack : MonoBehaviour, Damage
 {
     [SerializeField] private WizardState wizardState;
     public GameObject skullPre;
@@ -20,7 +20,7 @@ public class WizardAttack : MonoBehaviour
 
     int skullCount = 5;
     int stoneCount = 10;
-
+    int randNum = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,9 +35,18 @@ public class WizardAttack : MonoBehaviour
         if(t > wizardState.attackTime && !attackTrue)
         {
             t = 0;
-            int randNum;
-            randNum = Random.Range(1, 11);
-            //randNum = 8;
+            //int randNum;
+            //randNum = Random.Range(1, 11);
+
+            if (randNum == 0)
+                randNum = 1;
+            else if (randNum == 1)
+                randNum = 5;
+            else if (randNum == 5)
+                randNum = 8;
+            else if (randNum == 8)
+                randNum = 1;
+
             if(randNum >= 1 && randNum <= 4)
             {
                 SkullAttack();
@@ -55,6 +64,11 @@ public class WizardAttack : MonoBehaviour
 
             }
         }
+    }
+
+    public virtual void OnDamage(float damgage, int mode)
+    {
+        wizardState.hp -= damgage;
     }
 
     void SkullAttack()

@@ -15,7 +15,7 @@ public class EvilGodAttack : MonoBehaviour
     public bool attackTrue;
     bool berserkerMode;
 
-    int randNum;
+    int randNum = 0;
     float t, t1;
 
     Vector3 fPosition1, fPosition2;
@@ -34,7 +34,15 @@ public class EvilGodAttack : MonoBehaviour
         {
             t = 0;
             
-            randNum = Random.Range(1, 10);
+            //randNum = Random.Range(1, 10);
+            if (randNum == 0)
+                randNum = 1;
+            else if (randNum == 1)
+                randNum = 6;
+            else if (randNum == 6)
+                randNum = 8;
+            else if (randNum == 8)
+                randNum = 1;
 
             if (randNum >= 1 && randNum <= 5)
             {

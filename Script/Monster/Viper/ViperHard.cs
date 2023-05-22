@@ -5,7 +5,7 @@ using UnityEngine;
 public class ViperHard : MonoBehaviour
 {
     [SerializeField] private MeleeMonster melee;
-    [SerializeField] private MonsterState mstate;
+    [SerializeField] private ViperState mstate;
 
     Animator ani;
 

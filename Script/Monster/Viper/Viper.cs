@@ -8,14 +8,12 @@ public class Viper : MonoBehaviour, Damage
     MonsterState mState;
     MeleeMonster melee;
 
-    float t = 1f, t1;
+    float t = 1f;
     // Start is called before the first frame update
     void Start()
     {
         mState = GetComponent<MonsterState>();
         melee = GetComponent<MeleeMonster>();
-        Collider2D collA = GetComponent<Collider2D>();
-        Collider2D collB = GameObject.Find("Player").GetComponent<Collider2D>();
         //Physics2D.IgnoreCollision(collA, collB);
     }
 
@@ -37,18 +35,8 @@ public class Viper : MonoBehaviour, Damage
         }
 
         if (mState.hp <= 0)
-            Die();
+            gameObject.SetActive(false);
 
-    }
-    void Die()
-    {
-        Destroy(gameObject, 1f);
-    }
-
-    IEnumerator OnHitTime()
-    {
-        yield return new WaitForSeconds(0.5f);
-        GetComponent<CircleCollider2D>().enabled = true;
     }
 
     private void OnTriggerStay2D(Collider2D collision)

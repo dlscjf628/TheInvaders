@@ -76,9 +76,5 @@ public class MeleeMonster : MonoBehaviour
         }
     }
 
-    void Die()
-    {
-        Destroy(gameObject, 1f);
-    }
 
 }

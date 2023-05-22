@@ -34,8 +34,15 @@ public class FlyBossAttack : MonoBehaviour
         if (t > flyState.attackTime && !attackTrue)
         {
             t = 0;
-            randNum = Random.Range(1, 4);
-            randNum = 2;
+            //randNum = Random.Range(1, 4);
+            if (randNum == 0)
+                randNum = 1;
+            else if (randNum == 1)
+                randNum = 2;
+            else if (randNum == 2)
+                randNum = 3;
+            else if (randNum == 3)
+                randNum = 1;
             if (randNum == 1)
             {
                 for(int i=0; i<5; i++)

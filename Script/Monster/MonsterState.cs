@@ -4,9 +4,25 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour
 {
-    public float hp = 100f;  //몬스터 체력
-    public float speed = 5f; //몬스터 이동속도
-    public float damage = 1f; //몬스터 데미지
+    public float hp;  //몬스터 체력
+    public float maxHp;
+    public float speed; //몬스터 이동속도
+    public float damage; //몬스터 데미지
 
-    
+
+    void OnEnable()
+    {
+        hp = maxHp;
+    }
+
+    public void Init(SpawnData data)
+    {
+        //ani.runtimeAnimatorController =  animCon[data.spriteType];
+        speed = data.speed;
+        maxHp = data.health;
+        hp = data.health;
+        damage = data.damage;
+    }
+
+
 }

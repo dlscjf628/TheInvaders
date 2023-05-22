@@ -1,52 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class Monster : MonoBehaviour, Damage
+public class MutantRat : MonoBehaviour
 {
-    MonsterState mState;
+    MutantState mState;
+
+    GameObject player;
 
     float t = 1f;
+    float monsterX, monsterY, monsterZ;
     // Start is called before the first frame update
     void Start()
     {
-        mState = GetComponent<MonsterState>();
+        mState = GetComponent<MutantState>();
+        player = GameObject.Find("Player");
+        monsterX = transform.localScale.x;
+        monsterY = transform.localScale.y;
+        monsterZ = transform.localScale.z;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Move();
+    }
 
+    void Move()
+    {
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        transform.Translate(direction * mState.speed * Time.deltaTime);
+        if (direction.x > 0)
+        {
+            transform.localScale = new Vector3(monsterX, monsterY, monsterZ);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-monsterX, monsterY, monsterZ);
+        }
     }
 
     public virtual void OnDamage(float damgage, int mode)
     {
         mState.hp -= damgage;
         if (mState.hp <= 0)
-            Die();
+            gameObject.SetActive(false);
     }
-    void Die()
-    {
-        Destroy(gameObject, 1f);
-    }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "Player")
-    //    {
-    //        Damage target = collision.GetComponent<Damage>();
-    //        target.OnDamage(mState.damage);
-    //        GetComponent<CircleCollider2D>().enabled = false;
-    //        StartCoroutine(OnHitTime());
-    //    }
-    //}
-
-    //IEnumerator OnHitTime()
-    //{
-    //    yield return new WaitForSeconds(0.5f);
-    //    GetComponent<CircleCollider2D>().enabled = true;
-    //}
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -68,4 +67,6 @@ public class Monster : MonoBehaviour, Damage
             t = 1.0f;
         }
     }
+
+
 }
