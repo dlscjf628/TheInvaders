@@ -4,36 +4,24 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
-    public static Manager instance
+    public static Manager instance;
+    public int level;
+    public float gameTime;
+    public float maxGameTime = 20f;
+
+    public PoolManager pool;
+    void Awake()
     {
-        get
-        {
-            if(_instance == null)
-            {
-                _instance = FindObjectOfType<Manager>();
-            }
-            return _instance;
-        }
+        instance = this;
     }
 
-    static Manager _instance;
-
-    public bool gameOver { get; set; } //게임 오버 상태
-    // Start is called before the first frame update
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
-    }
+        gameTime += Time.deltaTime;
 
-    public void PlayerDie()
-    {
-        gameOver = true;
+        if (gameTime > maxGameTime)
+        {
+            gameTime = maxGameTime;
+        }
     }
-
 }
