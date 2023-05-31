@@ -10,62 +10,67 @@ public class Spawner : MonoBehaviour
     public SpawnDataPoison[] spawnDataPoison;
     public SpawnDataViper[] spawnDataViper;
 
+    public GameObject manager;
+
     int level;
     float t, t1;
 
-    float spawnTime = 1.5f;
+    float spawnTime = 1f;
     float realTime;
     float[] spTime = new float[] { 5, 4, 3, 2, 1, 1 };
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        t += Time.deltaTime;
-        t1 += Time.deltaTime;
-
-        level = Manager.instance.level / 5;
-
-        realTime = spawnTime - (Manager.instance.level * 0.1f);
-        if (realTime < 0.2f)
+        if (!Manager.instance.gameOver && manager.GetComponent<InforMation>().Stage % 10 != 0)
         {
-            realTime = 0.2f;
-        }
+            t += Time.deltaTime;
+            t1 += Time.deltaTime;
 
-        if (t > realTime)
-        {
-            t = 0f;
-            SpawnMutant();
-        }
-        if (t1 > spTime[Manager.instance.level / 5])
-        {
-            t1 = 0;
-            int n = Random.Range(0, 4);
-            if (n == 0)
+            level = Manager.instance.level / 5;
+
+            realTime = spawnTime - (Manager.instance.level * 0.1f);
+            if (realTime < 0.2f)
             {
+                realTime = 0.2f;
+            }
+
+            if (t > realTime)
+            {
+                t = 0f;
                 SpawnMutant();
             }
-            else if (n == 1)
+            if (t1 > spTime[Manager.instance.level / 5])
             {
-                Spawn();
-            }
-            else if (n == 2)
-            {
-                SpawnSlow();
-            }
-            else if (n == 3)
-            {
-                SpawnPoison();
-            }
-            else if (n == 4)
-            {
-                SpawnViper();
+                t1 = 0;
+                int n = Random.Range(0, 4);
+                if (n == 0)
+                {
+                    SpawnMutant();
+                }
+                else if (n == 1)
+                {
+                    Spawn();
+                }
+                else if (n == 2)
+                {
+                    SpawnSlow();
+                }
+                else if (n == 3)
+                {
+                    SpawnPoison();
+                }
+                else if (n == 4)
+                {
+                    SpawnViper();
+                }
             }
         }
-        
+
     }
 
     void SpawnMutant()

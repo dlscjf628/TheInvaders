@@ -1,28 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StageBuff : MonoBehaviour
 {
     public Text buffText;
     GameObject player;
+    GameObject joystick;
+    public GameObject weapon;
 
     int stage;
+
+    public InforMation info;
+
+    public float moveSpeed;
+    public float[] attackSpeed = new float[6];
+    bool cnt;
+
     // Start is called before the first frame update
     void Start()
     {
+        //player = GameObject.Find("Player");
+        //joystick = GameObject.Find("Joystick_Time_Buff");
+        //buffText = joystick.transform.GetChild(4).gameObject.GetComponent<Text>();
+        //info = GameObject.Find("GameManager").GetComponent<InforMation>();
+        //weapon = player.transform.GetChild(0).GetChild(2).gameObject;
+    }
+
+    void OnEnable()
+    {
         player = GameObject.Find("Player");
+        joystick = GameObject.Find("Joystick_Time_Buff");
+        buffText = joystick.transform.Find("Buff").GetComponent<Text>();
+        info = GameObject.Find("GameManager").GetComponent<InforMation>();
+        weapon = player.transform.GetChild(0).GetChild(2).gameObject;
+
+        moveSpeed = info.PlayerSpeed;
+        for (int i = 0; i < 6; i++)
+        {
+            attackSpeed[i] = info.WearWeaponspeed[i];
+            //info.WearWeaponspeed[i] *= 2.0f;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (stage != Manager.instance.level)
+        if (!cnt)
         {
-            stage = Manager.instance.level;
-            int n = Random.Range(0, 2);
-
+            cnt = true;
+            int n = Random.Range(0, 4);
             if (n == 0)
             {
                 MoveMentSpeedIncrease();
@@ -31,18 +60,67 @@ public class StageBuff : MonoBehaviour
             {
                 MoveMentSpeedreduction();
             }
-        }   
+            else if (n == 2)
+            {
+                AttackSpeedUp();
+            }
+            else if (n == 3)
+            {
+                AttackSpeedDown();
+            }
+        }
     }
 
     void MoveMentSpeedIncrease()
     {
-        player.GetComponent<bl_ControllerExample>().Speed *= 1.2f;
-        buffText.text = "¿Ãµøº”µµ∞° 20%¡ı∞°";
+        
+        info.PlayerSpeed *= 2f;
+        buffText.text = "Ïù¥ÎèôÏÜçÎèÑ 20% Ï¶ùÍ∞Ä";
     }
 
     void MoveMentSpeedreduction()
     {
-        player.GetComponent<bl_ControllerExample>().Speed *= 0.8f;
-        buffText.text = "¿Ãµøº”µµ∞° 20%∞®º“";
+        info.PlayerSpeed *= 0.5f;
+        buffText.text = "Ïù¥ÎèôÏÜçÎèÑ 20% Í∞êÏÜå";
+    }
+
+    void AttackSpeedUp()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            //attackSpeed[i] = weapon.transform.GetChild(i).GetChild(0).gameObject.GetComponent<StopAni>().anispeed;
+            //weapon.transform.GetChild(i).GetChild(0).gameObject.GetComponent<StopAni>().anispeed *= 1.1f;
+            info.WearWeaponspeed[i] *= 2.0f;
+        }
+
+        buffText.text = "Í≥µÍ≤©ÏÜçÎèÑ 10% Ï¶ùÍ∞Ä";
+    }
+
+    void AttackSpeedDown()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            //weapon.transform.GetChild(i).GetChild(0).gameObject.GetComponent<StopAni>().anispeed *= 0.9f;
+            info.WearWeaponspeed[i] *= 0.5f;
+        }
+        buffText.text = "Í≥µÍ≤©ÏÜçÎèÑ 10% Í∞êÏÜå";
+    }
+
+    void DamegeUp()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            weapon.transform.GetChild(i).GetChild(0).gameObject.GetComponent<StopAni>().damage *= 1.1f;
+        }
+        buffText.text = "Í≥µÍ≤©Î†• 10% Ï¶ùÍ∞Ä";
+    }
+
+    void DamegeDown()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            weapon.transform.GetChild(i).GetChild(0).gameObject.GetComponent<StopAni>().damage *= 0.9f;
+        }
+        buffText.text = "Í≥µÍ≤©Î†• 10% Í∞êÏÜå";
     }
 }

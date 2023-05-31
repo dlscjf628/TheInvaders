@@ -5,27 +5,33 @@ using UnityEngine;
 public class PoolManager : MonoBehaviour
 {
     public GameObject[] prefabs;
+    public GameObject coinPre;
 
     List<GameObject>[] pools;
+    List<GameObject> coin;
 
     private void Awake()
     {
         pools = new List<GameObject>[prefabs.Length];
 
-        for(int i=0; i < pools.Length; i++)
+        for (int i = 0; i < pools.Length; i++)
         {
             pools[i] = new List<GameObject>();
         }
-        
+        coin = new List<GameObject>();
+        coin.Add(Instantiate(coinPre, transform));
+        coin[0].SetActive(false);
+        DontDestroyOnLoad(gameObject);
+
     }
 
     public GameObject Get(int i)
     {
         GameObject select = null;
-
         foreach (GameObject item in pools[i])
         {
-            if (!item.activeSelf)  //ºñÈ°¼ºÈ­ µÈ item ÀÌ¸é ½ÇÇà
+
+            if (!item.activeSelf)  //ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½ï¿½ item ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
             {
                 select = item;
                 select.SetActive(true);
@@ -33,10 +39,31 @@ public class PoolManager : MonoBehaviour
             }
         }
 
-        if (!select)  //item¿¡ ¾Æ¹«°Íµµ ¾ø´Ù¸é
+        if (!select)  //itemï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
         {
             select = Instantiate(prefabs[i], transform);
             pools[i].Add(select);
+        }
+        return select;
+    }
+
+    public GameObject GetCoin()
+    {
+        GameObject select = null;
+
+        for (int i = 0; i < coin.Count; i++)
+        {
+            if (!coin[i].activeSelf)
+            {
+                select = coin[i];
+                select.SetActive(true);
+                break;
+            }
+            if (!select)
+            {
+                select = Instantiate(coinPre, transform);
+                coin.Add(select);
+            }
         }
 
         return select;
