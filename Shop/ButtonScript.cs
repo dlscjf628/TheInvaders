@@ -7,40 +7,40 @@ using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour
 {
-    public Sprite[] WearWeapon = new Sprite[6]; // ÀåÂøÁßÀÎ ¹«±â
-    public GameObject[] WearWeaponFrameObject; // ÀåÂøÁßÀÎ ¹«±â µî±Ş¿¡ µû¶ó ÀåÂøÁßÀÎ ¹«±â ÇÁ·¹ÀÓ º¯°æ
+    public Sprite[] WearWeapon = new Sprite[6]; // ì¥ì°©ì¤‘ì¸ ë¬´ê¸°
+    public GameObject[] WearWeaponFrameObject; // ì¥ì°©ì¤‘ì¸ ë¬´ê¸° ë“±ê¸‰ì— ë”°ë¼ ì¥ì°©ì¤‘ì¸ ë¬´ê¸° í”„ë ˆì„ ë³€ê²½
     
-    public GameObject[] RandomItemImageObject; // ·£´ı ¹«±â ÀÌ¹ÌÁö
-    public GameObject[] RandomItemBackgroundObject; // ·£´ı µî±Ş ¹è°æ
+    public GameObject[] RandomItemImageObject; // ëœë¤ ë¬´ê¸° ì´ë¯¸ì§€
+    public GameObject[] RandomItemBackgroundObject; // ëœë¤ ë“±ê¸‰ ë°°ê²½
 
-    public GameObject[] WearWeaponObject; // ÀåÂøÁßÀÎ ¹«±â ÀÌ¹ÌÁö
-    public GameObject[] WearItemObject; // ±¸¸ÅÇÑ ¾ÆÀÌÅÛ ÀÌ¹ÌÁö
+    public GameObject[] WearWeaponObject; // ì¥ì°©ì¤‘ì¸ ë¬´ê¸° ì´ë¯¸ì§€
+    public GameObject[] WearItemObject; // êµ¬ë§¤í•œ ì•„ì´í…œ ì´ë¯¸ì§€
 
-    public Sprite[] RandomWeaponSprite; //¹«±â ÀÌ¹ÌÁö 12°³ - ´Ü°Ë °Ë µĞ±â Ã¢ / ±ÇÃÑ AK ¼¦°Ç ½º³ª / ºÒ Àü±â ¼º¼Ó ¾Ï¼Ó
-    public Sprite[] RandomItemSprite; //¾ÆÀÌÅÛ ÀÌ¹ÌÁö 6°³ - HPÁõ°¡, µ¥¹ÌÁö Áõ°¡, °ø¼Ó Áõ°¡, ÀÌ¼Ó Áõ°¡, ÄÚÀÎ+50, ÄÚÀÎ+100
+    public Sprite[] RandomWeaponSprite; //ë¬´ê¸° ì´ë¯¸ì§€ 12ê°œ - ë‹¨ê²€ ê²€ ë‘”ê¸° ì°½ / ê¶Œì´ AK ìƒ·ê±´ ìŠ¤ë‚˜ / ë¶ˆ ì „ê¸° ì„±ì† ì•”ì†
+    public Sprite[] RandomItemSprite; //ì•„ì´í…œ ì´ë¯¸ì§€ 6ê°œ - HPì¦ê°€, ë°ë¯¸ì§€ ì¦ê°€, ê³µì† ì¦ê°€, ì´ì† ì¦ê°€, ì½”ì¸+50, ì½”ì¸+100
 
-    public Sprite[] RandomWeaponBackgroundSprite; // µî±Ş ¹è°æ ÀÌ¹ÌÁö
-    public Sprite[] WearWeaponFrame;//ÀåÂø ¹«±âÀÇ µî±ŞÀ» ¾Ë·ÁÁÖ´Â ÇÁ·¹ÀÓ
+    public Sprite[] RandomWeaponBackgroundSprite; // ë“±ê¸‰ ë°°ê²½ ì´ë¯¸ì§€
+    public Sprite[] WearWeaponFrame;//ì¥ì°© ë¬´ê¸°ì˜ ë“±ê¸‰ì„ ì•Œë ¤ì£¼ëŠ” í”„ë ˆì„
 
-    public GameObject WeaponPopUp; //ÀåÂøÁßÀÎ ¹«±â ÆË¾÷
-    public GameObject PausePopUp; //ÀÏ½ÃÁ¤Áö ÆË¾÷
+    public GameObject WeaponPopUp; //ì¥ì°©ì¤‘ì¸ ë¬´ê¸° íŒì—…
+    public GameObject PausePopUp; //ì¼ì‹œì •ì§€ íŒì—…
 
-    public Text cointext; //ÇöÀç ÄÚÀÎ °¹¼ö
-    public Text Resetcointext; // ¸®¼Â½Ã ÇÊ¿äÇÑ ÄÚÀÎ °¹¼ö
-    public Text[] RandomItemname = new Text[4]; // ¾ÆÀÌÅÛ ¼³¸í
-    public Text[] BuyButtonprice = new Text[4]; // ±¸¸Å¹öÆ° ÄÚÀÎ °¹¼ö
+    public Text cointext; //í˜„ì¬ ì½”ì¸ ê°¯ìˆ˜
+    public Text Resetcointext; // ë¦¬ì…‹ì‹œ í•„ìš”í•œ ì½”ì¸ ê°¯ìˆ˜
+    public Text[] RandomItemname = new Text[4]; // ì•„ì´í…œ ì„¤ëª…
+    public Text[] BuyButtonprice = new Text[4]; // êµ¬ë§¤ë²„íŠ¼ ì½”ì¸ ê°¯ìˆ˜
 
     GameObject GameManger;
     public GameObject pool;
-    //·£´ı º¯¼ö
+    //ëœë¤ ë³€ìˆ˜
     int Randombackground1, Randombackground2, Randombackground3, Randombackground4;
     int RandomItem1, RandomItem2, RandomItem3, RandomItem4;
-    int Grade, num; //µî±Ş º¯¼ö, ÀåÂøÁßÀÎ ¹«±â Áß ¸î¹øÂ°ÀÎÁö È®ÀÎÇÏ±â À§ÇÑ º¯¼ö
-    int[] RandomWeaponGrade = new int[4]; // ·£´ı ¹«±â µî±Ş
-    string[] WeaponOrItem = new string[4]; // ¾ÆÀÌÅÛÀÎÁö ¹«±âÀÎÁö È®ÀÎ
-    int[] RandomItemprice = new int[4]; // ¾ÆÀÌÅÛ °¡°İ
-    int[] Weaponindex = new int[4]; // ¾î¶² ¹«±âÀÎÁö ¾Ë·ÁÁÖ´Â º¯¼ö
-    int[] Itemnum = new int[4]; // ¾î¶² ¾ÆÀÌÅÛÀÎÁö È®ÀÎ
+    int Grade, num; //ë“±ê¸‰ ë³€ìˆ˜, ì¥ì°©ì¤‘ì¸ ë¬´ê¸° ì¤‘ ëª‡ë²ˆì§¸ì¸ì§€ í™•ì¸í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+    int[] RandomWeaponGrade = new int[4]; // ëœë¤ ë¬´ê¸° ë“±ê¸‰
+    string[] WeaponOrItem = new string[4]; // ì•„ì´í…œì¸ì§€ ë¬´ê¸°ì¸ì§€ í™•ì¸
+    int[] RandomItemprice = new int[4]; // ì•„ì´í…œ ê°€ê²©
+    int[] Weaponindex = new int[4]; // ì–´ë–¤ ë¬´ê¸°ì¸ì§€ ì•Œë ¤ì£¼ëŠ” ë³€ìˆ˜
+    int[] Itemnum = new int[4]; // ì–´ë–¤ ì•„ì´í…œì¸ì§€ í™•ì¸
     Color color;
     void Start()
     {
@@ -48,21 +48,21 @@ public class ButtonScript : MonoBehaviour
         pool = GameObject.Find("PoolManager");
         pool.SetActive(false);
 
-        //¶ó¿îµåº° µî±Ş È®·ü
+        //ë¼ìš´ë“œë³„ ë“±ê¸‰ í™•ë¥ 
         WeaponBackGroundRandom();
-        //¾ÆÀÌÅÛ È®·ü
+        //ì•„ì´í…œ í™•ë¥ 
         ItemRandom();
-        //±¸¸Å ¹öÆ° È°¼ºÈ­
+        //êµ¬ë§¤ ë²„íŠ¼ í™œì„±í™”
         Buttonactivate();
 
-        //ÄÚÀÎ °ü·Ã ÅØ½ºÆ® ¼³Á¤
+        //ì½”ì¸ ê´€ë ¨ í…ìŠ¤íŠ¸ ì„¤ì •
         cointext.text = GameManger.GetComponent<InforMation>().Coin.ToString();
         Resetcointext.text = "Reset : " + GameManger.GetComponent<InforMation>().ResetCoin.ToString();
-        //ÀåÂøÁßÀÎ ¹«±â Ã£±â
+        //ì¥ì°©ì¤‘ì¸ ë¬´ê¸° ì°¾ê¸°
         for(int i = 0; i < 6; i++)
         {
             WearWeapon[i] = GameManger.GetComponent<InforMation>().PlayerWeapon[i];
-            //¹«±â ÀÌ¹ÌÁö º¯°æ
+            //ë¬´ê¸° ì´ë¯¸ì§€ ë³€ê²½
             if (WearWeapon[i] != null)
             {
                 WearWeaponObject[i].GetComponent<Image>().sprite = WearWeapon[i];
@@ -77,32 +77,32 @@ public class ButtonScript : MonoBehaviour
         }
     }
 
-    //¹«±â+¾ÆÀÌÅÛ ÀÌ¹ÌÁö ¼³Á¤
+    //ë¬´ê¸°+ì•„ì´í…œ ì´ë¯¸ì§€ ì„¤ì •
     public void ItemRandom()
     {
-        //¾ÆÀÌÅÛ ·£´ı º¯¼ö / 0 ~ 11±îÁö´Â ¹«±â ±× ÀÌÈÄ·Ğ ¾ÆÀÌÅÛ
+        //ì•„ì´í…œ ëœë¤ ë³€ìˆ˜ / 0 ~ 11ê¹Œì§€ëŠ” ë¬´ê¸° ê·¸ ì´í›„ë¡  ì•„ì´í…œ
         RandomItem1 = Random.Range(0, 18);
         RandomItem2 = Random.Range(0, 18);
         RandomItem3 = Random.Range(0, 18);
         RandomItem4 = Random.Range(0, 18);
 
-        //¾ÆÀÌÅÛ ÀÌ¹ÌÁö ¼³Á¤
+        //ì•„ì´í…œ ì´ë¯¸ì§€ ì„¤ì •
         RandomRangeItem(0, RandomItem1);
         RandomRangeItem(1, RandomItem2);
         RandomRangeItem(2, RandomItem3);
         RandomRangeItem(3, RandomItem4);
     }
-    // º¯¼ö¿¡ µû¸¥ ¹«±âor¾ÆÀÌÅÛ ¼³Á¤
+    // ë³€ìˆ˜ì— ë”°ë¥¸ ë¬´ê¸°orì•„ì´í…œ ì„¤ì •
     public void RandomRangeItem(int index, int per)
     {
-        if (per >= 0 && per < 12) // ¹«±â
+        if (per >= 0 && per < 12) // ë¬´ê¸°
         {
             RandomItemImageObject[index].GetComponent<Image>().sprite = RandomWeaponSprite[per];
             WeaponOrItem[index] = "Weapon";
             Weaponindex[index] = per;
             WeaponStatetext(index, per);
         }
-        else if (per > 11) // ¾ÆÀÌÅÛ
+        else if (per > 11) // ì•„ì´í…œ
         {
             per -= 12;
             RandomItemImageObject[index].GetComponent<Image>().sprite = RandomItemSprite[per];
@@ -110,10 +110,10 @@ public class ButtonScript : MonoBehaviour
             ItemStatetext(index, per);
         }
     }
-    //¾ÆÀÌÅÛ ¹è°æ ¼³Á¤
+    //ì•„ì´í…œ ë°°ê²½ ì„¤ì •
     public void WeaponBackGroundRandom()
     {
-        //µî±Ş È®·ü
+        //ë“±ê¸‰ í™•ë¥ 
         Randombackground1 = Random.Range(1, 101);
         Randombackground2 = Random.Range(1, 101);
         Randombackground3 = Random.Range(1, 101);
@@ -129,9 +129,9 @@ public class ButtonScript : MonoBehaviour
             RandomWeaponGrade[2] = 0;
             RandomWeaponGrade[3] = 0;
         }
-        else if (GameManger.GetComponent<InforMation>().Stage > 5 && GameManger.GetComponent<InforMation>().Stage <= 10) // ¶ó¿îµå 6~10 ±îÁö´Â Èñ±Í(È¸»ö) 90%, ¿µ¿õ(º¸¶ó) 10%
+        else if (GameManger.GetComponent<InforMation>().Stage > 5 && GameManger.GetComponent<InforMation>().Stage <= 10) // ë¼ìš´ë“œ 6~10 ê¹Œì§€ëŠ” í¬ê·€(íšŒìƒ‰) 90%, ì˜ì›…(ë³´ë¼) 10%
         {
-            //Ã¹¹øÂ° Ä«µå µî±Ş
+            //ì²«ë²ˆì§¸ ì¹´ë“œ ë“±ê¸‰
             if (Randombackground1 <= 90)
             {
                 RandomItemBackgroundObject[0].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -143,7 +143,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[0].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[1];
                 RandomWeaponGrade[0] = 1;
             }
-            //2¹øÂ° Ä«µå µî±Ş
+            //2ë²ˆì§¸ ì¹´ë“œ ë“±ê¸‰
             if (Randombackground2 <= 90)
             {
                 RandomItemBackgroundObject[1].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -154,7 +154,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[1].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[1];
                 RandomWeaponGrade[1] = 1;
             }
-            //3¹øÂ° Ä«µå µî±Ş
+            //3ë²ˆì§¸ ì¹´ë“œ ë“±ê¸‰
             if (Randombackground3 <= 90)
             {
                 RandomItemBackgroundObject[2].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -165,7 +165,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[2].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[1];
                 RandomWeaponGrade[2] = 1;
             }
-            //4¹øÂ° Ä«µå µî±Ş
+            //4ë²ˆì§¸ ì¹´ë“œ ë“±ê¸‰
             if (Randombackground4 <= 90)
             {
                 RandomItemBackgroundObject[3].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -177,9 +177,9 @@ public class ButtonScript : MonoBehaviour
                 RandomWeaponGrade[3] = 1;
             }
         }
-        else if (GameManger.GetComponent<InforMation>().Stage > 10 && GameManger.GetComponent<InforMation>().Stage <= 15) // ¶ó¿îµå 11~15 ±îÁö´Â Èñ±Í(È¸»ö) 80%, ¿µ¿õ(º¸¶ó) 15%, Àü¼³(³ë¶û) 5%
+        else if (GameManger.GetComponent<InforMation>().Stage > 10 && GameManger.GetComponent<InforMation>().Stage <= 15) // ë¼ìš´ë“œ 11~15 ê¹Œì§€ëŠ” í¬ê·€(íšŒìƒ‰) 80%, ì˜ì›…(ë³´ë¼) 15%, ì „ì„¤(ë…¸ë‘) 5%
         {
-            //Ã¹¹øÂ° Ä«µå µî±Ş
+            //ì²«ë²ˆì§¸ ì¹´ë“œ ë“±ê¸‰
             if (Randombackground1 <= 80)
             {
                 RandomItemBackgroundObject[0].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -195,7 +195,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[0].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[2];
                 RandomWeaponGrade[0] = 2;
             }
-            // 2¹øÂ° Ä«µå µî±Ş
+            // 2ë²ˆì§¸ ì¹´ë“œ ë“±ê¸‰
             if (Randombackground2 <= 80)
             {
                 RandomItemBackgroundObject[1].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -211,7 +211,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[1].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[2];
                 RandomWeaponGrade[1] = 2;
             }
-            //3¹øÂ° Ä«µå µî±Ş
+            //3ë²ˆì§¸ ì¹´ë“œ ë“±ê¸‰
             if (Randombackground3 <= 80)
             {
                 RandomItemBackgroundObject[2].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -227,7 +227,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[2].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[2];
                 RandomWeaponGrade[2] = 2;
             }
-            //4¹øÂ° Ä«µå µî±Ş
+            //4ë²ˆì§¸ ì¹´ë“œ ë“±ê¸‰
             if (Randombackground4 <= 80)
             {
                 RandomItemBackgroundObject[3].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -244,9 +244,9 @@ public class ButtonScript : MonoBehaviour
                 RandomWeaponGrade[3] = 2;
             }
         }
-        else if (GameManger.GetComponent<InforMation>().Stage > 15 && GameManger.GetComponent<InforMation>().Stage <= 20) // ¶ó¿îµå 16 ~ 20 ÀÏ¶§ Èñ±Í(È¸»ö) 40%, ¿µ¿õ(º¸¶ó) 45%, Àü¼³(³ë¶û) 14%, °í´ë(ÆÄ¶û) 1%
+        else if (GameManger.GetComponent<InforMation>().Stage > 15 && GameManger.GetComponent<InforMation>().Stage <= 20) // ë¼ìš´ë“œ 16 ~ 20 ì¼ë•Œ í¬ê·€(íšŒìƒ‰) 40%, ì˜ì›…(ë³´ë¼) 45%, ì „ì„¤(ë…¸ë‘) 14%, ê³ ëŒ€(íŒŒë‘) 1%
         {
-            // Ã¹¹øÂ° Ä«µå µî±Ş
+            // ì²«ë²ˆì§¸ ì¹´ë“œ ë“±ê¸‰
             if (Randombackground1 <= 40)
             {
                 RandomItemBackgroundObject[0].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -267,7 +267,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[0].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[3];
                 RandomWeaponGrade[0] = 3;
             }
-            // 2¹øÂ° Ä«µå µî±Ş
+            // 2ë²ˆì§¸ ì¹´ë“œ ë“±ê¸‰
             if (Randombackground2 <= 40)
             {
                 RandomItemBackgroundObject[1].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -288,7 +288,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[1].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[3];
                 RandomWeaponGrade[1] = 3;
             }
-            // 3¹øÂ° Ä«µå µî±Ş
+            // 3ë²ˆì§¸ ì¹´ë“œ ë“±ê¸‰
             if (Randombackground3 <= 40)
             {
                 RandomItemBackgroundObject[2].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -309,7 +309,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[2].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[3];
                 RandomWeaponGrade[2] = 3;
             }
-            // 4¹øÂ° Ä«µå µî±Ş
+            // 4ë²ˆì§¸ ì¹´ë“œ ë“±ê¸‰
             if (Randombackground4 <= 40)
             {
                 RandomItemBackgroundObject[3].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -331,9 +331,9 @@ public class ButtonScript : MonoBehaviour
                 RandomWeaponGrade[3] = 3;
             }
         }
-        else if (GameManger.GetComponent<InforMation>().Stage > 20 && GameManger.GetComponent<InforMation>().Stage <= 25) // ¶ó¿îµå 21 ~ 25 ÀÏ¶§ Èñ±Í(È¸»ö) 30%, ¿µ¿õ(º¸¶ó) 40%, Àü¼³(³ë¶û) 20%, °í´ë(ÆÄ¶û) 10%
+        else if (GameManger.GetComponent<InforMation>().Stage > 20 && GameManger.GetComponent<InforMation>().Stage <= 25) // ë¼ìš´ë“œ 21 ~ 25 ì¼ë•Œ í¬ê·€(íšŒìƒ‰) 30%, ì˜ì›…(ë³´ë¼) 40%, ì „ì„¤(ë…¸ë‘) 20%, ê³ ëŒ€(íŒŒë‘) 10%
         {
-            //1¹øÂ° µî±Ş
+            //1ë²ˆì§¸ ë“±ê¸‰
             if (Randombackground1 <= 30)
             {
                 RandomItemBackgroundObject[0].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -354,7 +354,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[0].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[3];
                 RandomWeaponGrade[0] = 3;
             }
-            //2¹øÂ° µî±Ş
+            //2ë²ˆì§¸ ë“±ê¸‰
             if (Randombackground2 <= 30)
             {
                 RandomItemBackgroundObject[1].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -375,7 +375,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[1].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[3];
                 RandomWeaponGrade[1] = 3;
             }
-            //3¹øÂ° µî±Ş
+            //3ë²ˆì§¸ ë“±ê¸‰
             if (Randombackground3 <= 30)
             {
                 RandomItemBackgroundObject[2].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -396,7 +396,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[2].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[3];
                 RandomWeaponGrade[2] = 3;
             }
-            //4¹øÂ° µî±Ş
+            //4ë²ˆì§¸ ë“±ê¸‰
             if (Randombackground4 <= 30)
             {
                 RandomItemBackgroundObject[3].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -418,9 +418,9 @@ public class ButtonScript : MonoBehaviour
                 RandomWeaponGrade[3] = 3;
             }
         }
-        else if (GameManger.GetComponent<InforMation>().Stage > 25)// ¶ó¿îµå 26 ~ 29 ÀÏ¶§ Èñ±Í(È¸»ö) 15%, ¿µ¿õ(º¸¶ó) 40%, Àü¼³(³ë¶û) 30%, °í´ë(ÆÄ¶û) 15%
+        else if (GameManger.GetComponent<InforMation>().Stage > 25)// ë¼ìš´ë“œ 26 ~ 29 ì¼ë•Œ í¬ê·€(íšŒìƒ‰) 15%, ì˜ì›…(ë³´ë¼) 40%, ì „ì„¤(ë…¸ë‘) 30%, ê³ ëŒ€(íŒŒë‘) 15%
         {
-            //1¹øÂ° µî±Ş
+            //1ë²ˆì§¸ ë“±ê¸‰
             if (Randombackground1 <= 15)
             {
                 RandomItemBackgroundObject[0].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -441,7 +441,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[0].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[3];
                 RandomWeaponGrade[0] = 3;
             }
-            //2¹øÂ° µî±Ş
+            //2ë²ˆì§¸ ë“±ê¸‰
             if (Randombackground2 <= 15)
             {
                 RandomItemBackgroundObject[1].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -462,7 +462,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[1].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[3];
                 RandomWeaponGrade[1] = 3;
             }
-            //3¹øÂ° µî±Ş
+            //3ë²ˆì§¸ ë“±ê¸‰
             if (Randombackground3 <= 15)
             {
                 RandomItemBackgroundObject[2].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -483,7 +483,7 @@ public class ButtonScript : MonoBehaviour
                 RandomItemBackgroundObject[2].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[3];
                 RandomWeaponGrade[2] = 3;
             }
-            //4¹øÂ° µî±Ş
+            //4ë²ˆì§¸ ë“±ê¸‰
             if (Randombackground4 <= 15)
             {
                 RandomItemBackgroundObject[3].GetComponent<Image>().sprite = RandomWeaponBackgroundSprite[0];
@@ -506,7 +506,7 @@ public class ButtonScript : MonoBehaviour
             }
         }
     }
-    //·£´ı ¹«±â ÅØ½ºÆ® º¯°æ
+    //ëœë¤ ë¬´ê¸° í…ìŠ¤íŠ¸ ë³€ê²½
     public void WeaponStatetext(int index, int weapon)
     {
         if (weapon == 0)
@@ -577,53 +577,53 @@ public class ButtonScript : MonoBehaviour
         }
         if (weapon == 11)
         {
-            RandomItemname[index].text = "Holy\n" + "Damage : " + GameManger.GetComponent<InforMation>().Holydamge[RandomWeaponGrade[index]].ToString() + "\n" + "Attack Speed : " + GameManger.GetComponent<InforMation>().Holydamge[RandomWeaponGrade[index]].ToString() + "\n" + "µ¥¹ÌÁö ¸¸Å­ HPÈ¸º¹";
+            RandomItemname[index].text = "Holy\n" + "Damage : " + GameManger.GetComponent<InforMation>().Holydamge[RandomWeaponGrade[index]].ToString() + "\n" + "Attack Speed : " + GameManger.GetComponent<InforMation>().Holydamge[RandomWeaponGrade[index]].ToString() + "\n" + "ë°ë¯¸ì§€ ë§Œí¼ HPíšŒë³µ";
             BuyButtonprice[index].text = GameManger.GetComponent<InforMation>().Holyprice[RandomWeaponGrade[index]].ToString();
             RandomItemprice[index] = GameManger.GetComponent<InforMation>().Holyprice[RandomWeaponGrade[index]];
         }
     }
     
-    //·£´ı ¾ÆÀÌÅÛ ÅØ½ºÆ® º¯°æ
+    //ëœë¤ ì•„ì´í…œ í…ìŠ¤íŠ¸ ë³€ê²½
     public void ItemStatetext(int index, int Item)
     {
         if (Item == 0)
         {
-            RandomItemname[index].text = "Max HP UP Potion\n" + "ÇÃ·¹ÀÌ¾î ÃÖ´ë HP\n + 5";
+            RandomItemname[index].text = "Max HP UP Potion\n" + "í”Œë ˆì´ì–´ ìµœëŒ€ HP\n + 5";
             BuyButtonprice[index].text = GameManger.GetComponent<InforMation>().Itemprice[Item].ToString();
             RandomItemprice[index] = GameManger.GetComponent<InforMation>().Itemprice[Item];
         }
         else if (Item == 1)
         {
-            RandomItemname[index].text = "Damage UP Potion\n" + "¸ğµç ¹«±âÀÇ µ¥¹ÌÁö\n + 5";
+            RandomItemname[index].text = "Damage UP Potion\n" + "ëª¨ë“  ë¬´ê¸°ì˜ ë°ë¯¸ì§€\n + 5";
             BuyButtonprice[index].text = GameManger.GetComponent<InforMation>().Itemprice[Item].ToString();
             RandomItemprice[index] = GameManger.GetComponent<InforMation>().Itemprice[Item];
         }
         else if (Item == 2)
         {
-            RandomItemname[index].text = "Attack Speed UP Potion\n" + "¸ğµç ¹«±âÀÇ °ø°İ ¼Óµµ\n + 0.25";
+            RandomItemname[index].text = "Attack Speed UP Potion\n" + "ëª¨ë“  ë¬´ê¸°ì˜ ê³µê²© ì†ë„\n + 0.25";
             BuyButtonprice[index].text = GameManger.GetComponent<InforMation>().Itemprice[Item].ToString();
             RandomItemprice[index] = GameManger.GetComponent<InforMation>().Itemprice[Item];
         }
         else if (Item == 3)
         {
-            RandomItemname[index].text = "Speed UP Potion\n" + "ÇÃ·¹ÀÌ¾î ÀÌµ¿ ¼Óµµ\n + 0.25";
+            RandomItemname[index].text = "Speed UP Potion\n" + "í”Œë ˆì´ì–´ ì´ë™ ì†ë„\n + 0.25";
             BuyButtonprice[index].text = GameManger.GetComponent<InforMation>().Itemprice[Item].ToString();
             RandomItemprice[index] = GameManger.GetComponent<InforMation>().Itemprice[Item];
         }
         else if (Item == 4)
         {
-            RandomItemname[index].text = "Small Bouns Coin\n" + "ÄÚÀÎ + 10";
-            BuyButtonprice[index].text = "¹«·á";
+            RandomItemname[index].text = "Small Bouns Coin\n" + "ì½”ì¸ + 10";
+            BuyButtonprice[index].text = "ë¬´ë£Œ";
             RandomItemprice[index] = 0;
         }
         else if (Item == 5)
         {
-            RandomItemname[index].text = "Big Bouns Coin\n" + "ÄÚÀÎ + 25";
-            BuyButtonprice[index].text = "¹«·á";
+            RandomItemname[index].text = "Big Bouns Coin\n" + "ì½”ì¸ + 25";
+            BuyButtonprice[index].text = "ë¬´ë£Œ";
             RandomItemprice[index] = 0;
         }
     }
-    //¹«±âµî±Ş
+    //ë¬´ê¸°ë“±ê¸‰
     public void WeaponGrade(int a)
     {
         if (RandomItemBackgroundObject[a].GetComponent<Image>().sprite == RandomWeaponBackgroundSprite[0])
@@ -644,7 +644,7 @@ public class ButtonScript : MonoBehaviour
         }
     }
 
-    //¹«±â ½ºÅİ Àû¿ë
+    //ë¬´ê¸° ìŠ¤í…Ÿ ì ìš©
     public void WeaponStateSetting(int index, int grade, int i)
     {
         if (Weaponindex[index] == 0)
@@ -745,7 +745,7 @@ public class ButtonScript : MonoBehaviour
         }
     }
 
-    //¾ÆÀÌÅÛ ½ºÅİ Àû¿ë
+    //ì•„ì´í…œ ìŠ¤í…Ÿ ì ìš©
     public void ItemStateSetting(int index)
     {
         for(int i = 0; i < 4; i++)
@@ -766,11 +766,11 @@ public class ButtonScript : MonoBehaviour
         }
     }
 
-    //±¸¸Å ¹öÆ° : ±¸¸Å¹öÆ° ¸ğµÎ ¾ÆÁ÷ ÇÕÄ¡´Â ÄÚµå ±¸Çö ÇØ¾ßÇÔ, ÄÚÀÎ °¹¼ö ÁÙÀÌ°í ÅØ½ºÆ® º¯°æ, ÀüÃ¼¹«±â¿¡¼­ Ã£¾Æ¼­ ÀåÂøÁßÀÎ ¹«±â·Î ¿Å±è, ¹«±â¿Í ¾ÆÀÌÅÛ ÆÇ´Ü
+    //êµ¬ë§¤ ë²„íŠ¼ : êµ¬ë§¤ë²„íŠ¼ ëª¨ë‘ ì•„ì§ í•©ì¹˜ëŠ” ì½”ë“œ êµ¬í˜„ í•´ì•¼í•¨, ì½”ì¸ ê°¯ìˆ˜ ì¤„ì´ê³  í…ìŠ¤íŠ¸ ë³€ê²½, ì „ì²´ë¬´ê¸°ì—ì„œ ì°¾ì•„ì„œ ì¥ì°©ì¤‘ì¸ ë¬´ê¸°ë¡œ ì˜®ê¹€, ë¬´ê¸°ì™€ ì•„ì´í…œ íŒë‹¨
     public void BuyItem()
     {
         int Buttonnum = 0;
-        int count = 0; // °°Àº µî±ŞÀÌ ÀÖ´ÂÁö È®ÀÎÀ» ÇÏ±â À§ÇÑ º¯¼ö
+        int count = 0; // ê°™ì€ ë“±ê¸‰ì´ ìˆëŠ”ì§€ í™•ì¸ì„ í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
         if (EventSystem.current.currentSelectedGameObject.name == "BUYButton1") Buttonnum = 0;
         else if (EventSystem.current.currentSelectedGameObject.name == "BUYButton2") Buttonnum = 1;
         else if (EventSystem.current.currentSelectedGameObject.name == "BUYButton3") Buttonnum = 2;
@@ -802,7 +802,7 @@ public class ButtonScript : MonoBehaviour
                 }
                 if (count == 6)
                 {
-                    // °°Àº µî±ŞÀÌ ÀÖ´ÂÁö Ã£°í, ÇÕÄ¡±â
+                    // ê°™ì€ ë“±ê¸‰ì´ ìˆëŠ”ì§€ ì°¾ê³ , í•©ì¹˜ê¸°
                     for (int i = 0; i < 6; i++)
                     {
                         if (WearWeaponObject[i].GetComponent<Image>().sprite == RandomItemImageObject[Buttonnum].GetComponent<Image>().sprite && GameManger.GetComponent<InforMation>().WeaponGrade[i] == Grade && GameManger.GetComponent<InforMation>().WeaponGrade[i] < 3)
@@ -856,14 +856,14 @@ public class ButtonScript : MonoBehaviour
             }
         }
     }
-    //¹öÆ° È°¼ºÈ­¸¦ À§ÇÑ ÇÔ¼ö
+    //ë²„íŠ¼ í™œì„±í™”ë¥¼ ìœ„í•œ í•¨ìˆ˜
     public void Buttonactivate()
     {
         GameObject[] t = GameObject.FindGameObjectsWithTag("BuyButton");
         for (int i = 0; i < 4; i++) t[i].GetComponent<Button>().interactable = true;
     }
 
-    //ÆÇ¸Å ¹öÆ°
+    //íŒë§¤ ë²„íŠ¼
     public void SellButton()
     {
         GameManger.GetComponent<InforMation>().Coin += GameManger.GetComponent<InforMation>().WearWeaponPrice[num];
@@ -952,7 +952,7 @@ public class ButtonScript : MonoBehaviour
         WearWeaponFrameObject[num].GetComponent<Image>().sprite = WearWeaponFrame[0];
     }
 
-    //ÇÕ¼º ¹öÆ°
+    //í•©ì„± ë²„íŠ¼
     public void Weaponedit()
     {
         for(int i = 0; i < 6; i++)
@@ -1122,25 +1122,25 @@ public class ButtonScript : MonoBehaviour
         }
     }
 
-    // ¸®·Ñ ¹öÆ°
+    // ë¦¬ë¡¤ ë²„íŠ¼
     public void ResetButton()
     {
         if(GameManger.GetComponent<InforMation>().Coin >= GameManger.GetComponent<InforMation>().ResetCoin)
         {
-            Buttonactivate(); // ±¸¸Å¹öÆ° È°¼ºÈ­
+            Buttonactivate(); // êµ¬ë§¤ë²„íŠ¼ í™œì„±í™”
             GameManger.GetComponent<InforMation>().Coin -= GameManger.GetComponent<InforMation>().ResetCoin;
             GameManger.GetComponent<InforMation>().ResetCoin += Mathf.CeilToInt(GameManger.GetComponent<InforMation>().ResetCoin * 0.5f);
             cointext.text = GameManger.GetComponent<InforMation>().Coin.ToString();
             Resetcointext.text = "Reset : " + GameManger.GetComponent<InforMation>().ResetCoin.ToString();
 
-            // ¶ó¿îµåº° µî±Ş È®·ü 
+            // ë¼ìš´ë“œë³„ ë“±ê¸‰ í™•ë¥  
             WeaponBackGroundRandom();
-            // ¾ÆÀÌÅÛÀº ÃÑ 18°¡Áö
+            // ì•„ì´í…œì€ ì´ 18ê°€ì§€
             ItemRandom();
         }
     }
 
-    //´ÙÀ½ ½ºÅ×ÀÌÁö ¹öÆ°
+    //ë‹¤ìŒ ìŠ¤í…Œì´ì§€ ë²„íŠ¼
     public void NextStage()
     {
         GameManger.GetComponent<InforMation>().Stage += 1;
@@ -1148,13 +1148,13 @@ public class ButtonScript : MonoBehaviour
         GameManger.GetComponent<Manager>().poolManager.SetActive(true);
     }
 
-    //ÀÏ½ÃÁ¤Áö ¹öÆ°
+    //ì¼ì‹œì •ì§€ ë²„íŠ¼
     public void Pause()
     {
         PausePopUp.SetActive(true);
     }
 
-    // ¹«±â°¡ ÀåÂø µÇ¾îÀÖ´Ù¸é Text¶û °¡°İÀ» ¹Ù²ã¼­ º¸¿©ÁÖ´Â ÄÚµå ÇÊ¿ä(ÆË¾÷ ¹öÆ°)
+    // ë¬´ê¸°ê°€ ì¥ì°© ë˜ì–´ìˆë‹¤ë©´ Textë‘ ê°€ê²©ì„ ë°”ê¿”ì„œ ë³´ì—¬ì£¼ëŠ” ì½”ë“œ í•„ìš”(íŒì—… ë²„íŠ¼)
     public void wearweapon()
     {
         if (EventSystem.current.currentSelectedGameObject.name == "Weapon1Button") num = 0;
@@ -1170,24 +1170,24 @@ public class ButtonScript : MonoBehaviour
             WeaponPopUp.gameObject.transform.GetChild(4).GetChild(1).GetComponent<Text>().text = "+" + GameManger.GetComponent<InforMation>().WearWeaponPrice[num].ToString();
             if (GameManger.GetComponent<InforMation>().WeaponGrade[num] == 0)
             {
-                WeaponPopUp.gameObject.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Damage : " + GameManger.GetComponent<InforMation>().WearWeapondamage[num].ToString() + "\n" + "Attack Speed : " + GameManger.GetComponent<InforMation>().WearWeaponspeed[num].ToString() + "\nµî±Ş : Èñ±Í";
+                WeaponPopUp.gameObject.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Damage : " + GameManger.GetComponent<InforMation>().WearWeapondamage[num].ToString() + "\n" + "Attack Speed : " + GameManger.GetComponent<InforMation>().WearWeaponspeed[num].ToString() + "\në“±ê¸‰ : í¬ê·€";
             }
             else if (GameManger.GetComponent<InforMation>().WeaponGrade[num] == 1)
             {
-                WeaponPopUp.gameObject.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Damage : " + GameManger.GetComponent<InforMation>().WearWeapondamage[num].ToString() + "\n" + "Attack Speed : " + GameManger.GetComponent<InforMation>().WearWeaponspeed[num].ToString() + "\nµî±Ş : ¿µ¿õ";
+                WeaponPopUp.gameObject.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Damage : " + GameManger.GetComponent<InforMation>().WearWeapondamage[num].ToString() + "\n" + "Attack Speed : " + GameManger.GetComponent<InforMation>().WearWeaponspeed[num].ToString() + "\në“±ê¸‰ : ì˜ì›…";
             }
             else if (GameManger.GetComponent<InforMation>().WeaponGrade[num] == 2)
             {
-                WeaponPopUp.gameObject.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Damage : " + GameManger.GetComponent<InforMation>().WearWeapondamage[num].ToString() + "\n" + "Attack Speed : " + GameManger.GetComponent<InforMation>().WearWeaponspeed[num].ToString() + "\nµî±Ş : Àü¼³";
+                WeaponPopUp.gameObject.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Damage : " + GameManger.GetComponent<InforMation>().WearWeapondamage[num].ToString() + "\n" + "Attack Speed : " + GameManger.GetComponent<InforMation>().WearWeaponspeed[num].ToString() + "\në“±ê¸‰ : ì „ì„¤";
             }
             else if (GameManger.GetComponent<InforMation>().WeaponGrade[num] == 3)
             {
-                WeaponPopUp.gameObject.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Damage : " + GameManger.GetComponent<InforMation>().WearWeapondamage[num].ToString() + "\n" + "Attack Speed : " + GameManger.GetComponent<InforMation>().WearWeaponspeed[num].ToString() + "\nµî±Ş : Æ¯±Ş";
+                WeaponPopUp.gameObject.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Damage : " + GameManger.GetComponent<InforMation>().WearWeapondamage[num].ToString() + "\n" + "Attack Speed : " + GameManger.GetComponent<InforMation>().WearWeaponspeed[num].ToString() + "\në“±ê¸‰ : íŠ¹ê¸‰";
             }
             WeaponPopUp.SetActive(true);
         }
     }
-    //ÆË¾÷ Á¾·á
+    //íŒì—… ì¢…ë£Œ
     public void PopUpCancel()
     {
         if(EventSystem.current.currentSelectedGameObject.name == "PausePopupCancel")
@@ -1201,7 +1201,7 @@ public class ButtonScript : MonoBehaviour
         }
     }
 
-    //¸ŞÀÎ ¸Ş´º·Î µ¹¾Æ°¡´Â ¹öÆ°, ¸ŞÀÎ ¸Ş´º·Î ¾À ÀÌµ¿
+    //ë©”ì¸ ë©”ë‰´ë¡œ ëŒì•„ê°€ëŠ” ë²„íŠ¼, ë©”ì¸ ë©”ë‰´ë¡œ ì”¬ ì´ë™
     public void MainMenu()
     {
         Time.timeScale = 1;
@@ -1210,7 +1210,7 @@ public class ButtonScript : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    //¼¼ÆÃ ÆË¾÷ ¿­±â, ¼Ò¸® Á¶Á¤
+    //ì„¸íŒ… íŒì—… ì—´ê¸°, ì†Œë¦¬ ì¡°ì •
     public void SettingPopup()
     {
 
