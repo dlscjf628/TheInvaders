@@ -7,4 +7,4 @@
 팀장 : 유인철  
 팀원 : 김민우 박상규 박성균  
 플레이 영상 : https://youtu.be/AYmO0Ra0fLQ  
-2023.06.23 기준 현재 구글플레이 앱 등록 후 심사중
+구글플레이 : https://play.google.com/store/apps/details?id=com.GameSlaveTeam.TheInvaders  
